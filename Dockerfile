@@ -1,5 +1,5 @@
 # Use a Node.js base image with TypeScript support
-FROM node:20-alpine as builder
+FROM node:lts-slim as builder
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Use a new stage to keep the final image small
-FROM node:20-alpine
+FROM node:lts-slim
 
 WORKDIR /usr/src/app
 
@@ -28,7 +28,7 @@ COPY package*.json ./
 RUN npm install --only=production
 
 # Copy compiled JavaScript from the builder stage
-COPY --from=builder /usr/src/app/dist ./dist
+COPY --from=builder /usr/src/app/dist ./
 
 # Define the command to run your app (adjust if your main file is named differently)
-CMD ["node", "dist/index.js"]
+CMD ["node", "index.js"]
