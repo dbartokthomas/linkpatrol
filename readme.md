@@ -82,6 +82,25 @@ Here's an example of what the `config/config.json` file might look like:
 npm run start | pico-pretty
 ```
 
+If you want to use docker compose to run the app, the following is an example docker-compose.yml
+
+```yaml
+version: "3.8"
+
+services:
+  linkpatrol:
+    image: ghcr.io/dbartokthomas/linkpatrol:latest
+    container_name: linkpatrol-container
+    volumes:
+      - <some folder on your box>/config:/usr/src/app/config
+    environment:
+      TELEGRAM_BOT_TOKEN: "<Telegram bot token>"
+      TELEGRAM_CHAT_ID: "<Telegram Chat Id>"
+      CRON_SCHEDULE: "5 * * * *"
+      SEND_ALERT_ON_STARTUP: "true"
+    restart: unless-stopped
+```
+
 ## Contributing
 
 Provide contributing guidelines here.
