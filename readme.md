@@ -1,6 +1,6 @@
 # Project Title
 
-This is a brief description of your project.
+Linkpatrol will take a bunch of different app providers and then check your credentials against them to see if your URL has changed
 
 ## Environment Variables
 
@@ -20,7 +20,11 @@ Please replace the values with your actual data.
 
 ## Installation
 
-Provide installation instructions here.
+Follow these steps to install the project:
+
+1. Clone the repository:
+
+`git clone https://github.com/username/repository.git`
 
 ## Configuration
 
