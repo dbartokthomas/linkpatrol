@@ -24,7 +24,27 @@ Follow these steps to install the project:
 
 1. Clone the repository:
 
-`git clone https://github.com/username/repository.git`
+```bash
+git clone https://github.com/username/repository.git
+```
+
+2. Navigate into the project directory:
+
+```bash
+cd repository
+```
+
+3. Install the dependencies:
+
+```bash
+npm install
+```
+
+4. Create a `.env` file in the root directory of the project, and fill it with your environment variables. Refer to the Environment Variables section for more details.
+
+5. Create a `config/config.json` file based on the `config/config.json.example` file. Refer to the Configuration section for more details.
+
+6. Run the project:
 
 ## Configuration
 
@@ -58,7 +78,9 @@ Here's an example of what the `config/config.json` file might look like:
 
 ## Usage
 
-Provide usage instructions here.
+```bash
+npm run start | pico-pretty
+```
 
 ## Contributing
 
