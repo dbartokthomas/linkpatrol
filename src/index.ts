@@ -14,6 +14,7 @@ import { sendAlert } from "./alerts";
 
 // index.ts
 
+let scheduledJob: any = null;
 logger.info("Application is starting...");
 
 try {
@@ -37,7 +38,10 @@ try {
 
   // Schedule the function to run every hour
   logger.info(`Schedule ${getCronSchedule()}`);
-  schedule.scheduleJob(getCronSchedule(), myScheduledFunction);
+
+  scheduledJob = schedule.scheduleJob(getCronSchedule(), myScheduledFunction);
+
+  // myScheduledFunction();
   logger.info("Application started! Scheduler is running...");
 
   if (shouldSendAlertOnStartup()) {
@@ -47,3 +51,18 @@ try {
   logger.error(error.message);
   process.exit(1);
 }
+
+// Graceful shutdown function
+function gracefulShutdown() {
+  logger.info("Shutting down gracefully.");
+
+  // Cancel the scheduled job
+  if (scheduledJob) scheduledJob.cancel();
+
+  // Exit the process
+  process.exit(0);
+}
+
+// Handle termination signals
+process.on("SIGTERM", gracefulShutdown);
+process.on("SIGINT", gracefulShutdown);
